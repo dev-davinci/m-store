@@ -1,0 +1,24 @@
+{
+  "name": "m-store",
+  "version": "1.0.0",
+  "description": "Ecommerce mern",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Muhammad Gamal",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.11.12"
+  }
+}
