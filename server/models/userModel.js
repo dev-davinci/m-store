@@ -25,25 +25,22 @@ const userSchema = mongoose.Schema(
 
   { timestamps: true } // To make mongoose automatically manage createdAt and updatedAt properties
 );
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
-userSchema.methods.matchPassword = function (enteredPassword)  {
-    return await bcrypt.compare(enteredPassword, this.password)
+userSchema.pre("save", async function (next) {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
   }
-  
+});
 
-userSchema.pre('save', function (next)  {
-   try {
-       const salt = await bcrypt.genSalt(10)
-       const hashedPassword = await bcrypt.hash(this.password, salt)
+const User = mongoose.model("User", userSchema);
 
-       this.password = hashedPassword
-       next()
-   } catch (error) {
-       next(error)
-       
-   }
-})
-
-const User =mongoose.model('User', userSchema)
-
-export default User
+export default User;

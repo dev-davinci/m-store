@@ -7,7 +7,9 @@
   "scripts": {
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node server/utils/dataSeeder",
+    "data:destroy": "node server/utils/dataSeeder -d"
   },
   "author": "Muhammad Gamal",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "dotenv": "^8.2.0",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.12"
+    "mongoose": "^5.11.12",
+    "morgan": "^1.10.0"
   }
 }
