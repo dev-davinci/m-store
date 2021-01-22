@@ -9,7 +9,7 @@ import User from "./../models/userModel.js";
 export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.find({ email });
+  const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
     res.json({
@@ -32,7 +32,7 @@ export const authUser = asyncHandler(async (req, res) => {
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  const userExists = await User.find({ email });
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
     res.status(400);
