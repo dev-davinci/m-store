@@ -1,6 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "./../../../redux/actions/userActions";
 
 const BottomNavbar = () => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <div className="header-bottom">
       <div className="container">
@@ -32,35 +43,51 @@ const BottomNavbar = () => {
                 className="nav navbar-nav collapse navbar-collapse"
                 style={{ marginTop: "15px" }}
               >
-                <li>
-                  <a href="javascript(0)">
-                    <i
-                      className="fa fa-user"
-                      style={{ paddingLeft: "15px" }}
-                    ></i>{" "}
-                    Account
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript(0)">
-                    <i className="fa fa-star"></i> Wishlist
-                  </a>
-                </li>
-                <li>
-                  <a href="checkout.html">
-                    <i className="fa fa-crosshairs"></i> Checkout
-                  </a>
-                </li>
-                <li>
-                  <a href="cart.html">
-                    <i className="fa fa-shopping-cart"></i> Cart
-                  </a>
-                </li>
-                <li>
-                  <a href="login.html">
-                    <i className="fa fa-lock"></i> Login
-                  </a>
-                </li>
+                {userInfo ? (
+                  <>
+                    <li>
+                      <Link to="/profile">
+                        <i
+                          className="fa fa-user"
+                          style={{ paddingLeft: "15px" }}
+                        ></i>{" "}
+                        Account
+                      </Link>
+                    </li>
+                    <li>
+                      <a href="checkout.html">
+                        <i className="fa fa-crosshairs"></i> Checkout
+                      </a>
+                    </li>
+                    <li>
+                      <a href="cart.html">
+                        <i className="fa fa-shopping-cart"></i> Cart
+                      </a>
+                    </li>
+                    <li>
+                      <Link to="/" onClick={logoutHandler}>
+                        <i
+                          className="fa fa-user"
+                          style={{ paddingLeft: "15px" }}
+                        ></i>{" "}
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/register">
+                        <i className="fa fa-info"></i> Register
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/login">
+                        <i className="fa fa-lock"></i> Login
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>

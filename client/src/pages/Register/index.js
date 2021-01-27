@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "react-loader-spinner";
 import Message from "./../../components/Message";
+import { registerUser } from "./../../redux/actions/userActions";
 
-import { loginUser } from "./../../redux/actions/userActions";
+const Register = ({ history, location }) => {
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
-const Login = ({ history, location }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const userRegister = useSelector((state) => state.userRegister);
 
-  const userLogin = useSelector((state) => state.userLogin);
-
-  const { userInfo, loading, error } = userLogin;
+  const { loading, error, userInfo } = userRegister;
 
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, userInfo, redirect]);
+  }, [userInfo, history, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password));
+    dispatch(registerUser(name, email, password));
   };
 
   return (
@@ -34,7 +34,7 @@ const Login = ({ history, location }) => {
         <div className="row">
           <div className="col-sm-4 col-sm-offset-1">
             <div className="login-form">
-              <h2>Login to your account</h2>
+              <h2>Register new account</h2>
               {error && <Message variant="alert alert-danger">{error}</Message>}
               {loading && (
                 <Loader
@@ -46,6 +46,12 @@ const Login = ({ history, location }) => {
                 />
               )}
               <form onSubmit={submitHandler}>
+                <input
+                  type="name"
+                  placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
                 <input
                   type="email"
                   placeholder="Email"
@@ -60,7 +66,7 @@ const Login = ({ history, location }) => {
                 />
 
                 <button type="submit" className="btn btn-default">
-                  Login
+                  Register
                 </button>
               </form>
             </div>
@@ -71,4 +77,4 @@ const Login = ({ history, location }) => {
   );
 };
 
-export default Login;
+export default Register;

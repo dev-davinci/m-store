@@ -10,9 +10,7 @@ export const listProducts = () => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     console.log("lol");
 
-    const { data } = await axios.get(
-      "https://600c30e638fd25001702cf7e.mockapi.io/api/v1/products"
-    );
+    const { data } = await axios.get("/api/products");
     console.log(data);
 
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });

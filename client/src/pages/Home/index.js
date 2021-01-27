@@ -34,9 +34,9 @@ const Home = () => {
               <div className="product-image-wrapper">
                 <div className="single-products">
                   <div className="productinfo text-center">
-                    <img src={product.Image} alt="" />
+                    <img src={product.image} alt="" />
                     <h2>{product.price}</h2>
-                    <p>{product.name}n</p>
+                    <p>{product.name}</p>
                     <a
                       href="javascript(0)"
                       className="btn btn-default add-to-cart"
