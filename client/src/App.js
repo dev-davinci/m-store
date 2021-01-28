@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -14,6 +16,8 @@ const App = () => {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/profile" component={UserProfile} />
+      <Route path="/products/:id" component={ProductDetails} />
+      <Route path="/cart/:id?" component={Cart} />
       <Route path="/" exact component={Home} />
       <Footer />
     </Router>

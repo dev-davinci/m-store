@@ -18,9 +18,9 @@ const BottomNavbar = () => {
         <div className="row">
           <div className="col-sm-4">
             <div className="logo pull-left">
-              <a href="index.html">
+              <Link to="/">
                 <img src="images/home/logo.png" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -60,9 +60,9 @@ const BottomNavbar = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="cart.html">
+                      <Link to="/cart">
                         <i className="fa fa-shopping-cart"></i> Cart
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <Link to="/" onClick={logoutHandler}>
@@ -76,6 +76,11 @@ const BottomNavbar = () => {
                   </>
                 ) : (
                   <>
+                    <li>
+                      <Link to="/cart">
+                        <i className="fa fa-shopping-cart"></i> Cart
+                      </Link>
+                    </li>
                     <li>
                       <Link to="/register">
                         <i className="fa fa-info"></i> Register

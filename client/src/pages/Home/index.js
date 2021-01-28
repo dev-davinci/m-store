@@ -3,8 +3,9 @@ import { listProducts } from "./../../redux/actions/productActions";
 import Loader from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "./../../components/Message";
+import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ match, history, location }) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.listProducts);
@@ -37,21 +38,15 @@ const Home = () => {
                     <img src={product.image} alt="" />
                     <h2>{product.price}</h2>
                     <p>{product.name}</p>
-                    <a
-                      href="javascript(0)"
-                      className="btn btn-default add-to-cart"
-                    >
+                    <a href="/" className="btn btn-default add-to-cart">
                       <i className="fa fa-shopping-cart"></i>Add to cart
                     </a>
                   </div>
                   <div className="product-overlay">
                     <div className="overlay-content">
                       <h2>{product.price}</h2>
-                      <p>{product.name}</p>
-                      <a
-                        href="javascript(0)"
-                        className="btn btn-default add-to-cart"
-                      >
+                      <Link to={`products/${product._id}`}>{product.name}</Link>
+                      <a href="/" className="btn btn-default add-to-cart">
                         <i className="fa fa-shopping-cart"></i>Add to cart
                       </a>
                     </div>
