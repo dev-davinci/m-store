@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Shipping from "./pages/Shipping";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/profile" component={UserProfile} />
       <Route path="/products/:id" component={ProductDetails} />
       <Route path="/cart/:id?" component={Cart} />
+      <Route path="/shipping" component={Shipping} />
       <Route path="/" exact component={Home} />
       <Footer />
     </Router>

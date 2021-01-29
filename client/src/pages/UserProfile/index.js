@@ -53,6 +53,7 @@ const UserProfile = ({ history, location }) => {
     <section id="form">
       <div className="container">
         <div className="row">
+          {message && <Message variant="alert alert-danger">{message}</Message>}
           {loading ? (
             <Loader
               type="Puff"
