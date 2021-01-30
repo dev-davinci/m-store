@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import bodyParser from "body-parser";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import connectDB from "./config/database.js";
 
@@ -13,6 +14,9 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
+app.use(bodyParser.json()); // Send JSON responses
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

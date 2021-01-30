@@ -24,13 +24,14 @@ const Shipping = ({ history }) => {
   };
   return (
     <>
-      <div className="shopper-info container mb-5">
+      {/** 
+      <div classNameName="shopper-info container mb-5">
         <CheckoutSteps step1 step2 />
-        <div className="row">
-          <div className="col-sm-5 clearfix">
-            <div className="bill-to">
+        <div classNameName="row">
+          <div classNameName="col-sm-12 clearfix ">
+            <div classNameName="bill-to w-50 mx-auto">
               <p>Bill To</p>
-              <div className="form-one">
+              <div classNameName="form-one">
                 <form onSubmit={submitHandler}>
                   <input
                     type="text"
@@ -57,12 +58,80 @@ const Shipping = ({ history }) => {
                     onChange={(e) => setPostalCode(e.target.value)}
                   />
 
-                  <button className="btn btn-primary">Continue</button>
+                  <button classNameName="btn btn-primary">Continue</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      */}
+      <div className="container">
+        <form className="form-horizontal" onSubmit={submitHandler}>
+          <p style={{ fontSize: "25px" }}> Bill To</p>
+          <div className="form-group ">
+            <label className="control-label col-sm-2" for="address">
+              Address:
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                id="address"
+                placeholder="Address *"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="form-group ">
+            <label className="control-label col-sm-2" for="city">
+              City:
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                id="city"
+                placeholder="City *"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="form-group ">
+            <label className="control-label col-sm-2" for="country">
+              Country:
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                id="country"
+                placeholder="Country *"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="form-group ">
+            <label className="control-label col-sm-2" for="postalcode">
+              Zip / Postal Code:
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                id="postalcode"
+                placeholder="Zip / Postal Code *"
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-offset-2 col-sm-10">
+              <button className="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
       </div>
     </>
   );

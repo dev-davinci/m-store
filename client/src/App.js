@@ -8,6 +8,8 @@ import UserProfile from "./pages/UserProfile";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Shipping from "./pages/Shipping";
+import Payment from "./pages/Payment";
+import PlaceOrder from "./pages/PlaceOrder";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -20,6 +22,8 @@ const App = () => {
       <Route path="/products/:id" component={ProductDetails} />
       <Route path="/cart/:id?" component={Cart} />
       <Route path="/shipping" component={Shipping} />
+      <Route path="/payment" component={Payment} />
+      <Route path="/placeorder" component={PlaceOrder} />
       <Route path="/" exact component={Home} />
       <Footer />
     </Router>
