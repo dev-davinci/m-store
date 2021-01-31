@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Shipping from "./pages/Shipping";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
+import Order from "./pages/Order";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
       <Route path="/shipping" component={Shipping} />
       <Route path="/payment" component={Payment} />
       <Route path="/placeorder" component={PlaceOrder} />
+      <Route path="/order/:id" component={Order} />
       <Route path="/" exact component={Home} />
       <Footer />
     </Router>
