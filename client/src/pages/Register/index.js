@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "react-loader-spinner";
 import Message from "./../../components/Message";
 import { registerUser } from "./../../redux/actions/userActions";
+import image from "./images/girl2.jpg";
 
 const Register = ({ history, location }) => {
   const redirect = location.search ? location.search.split("=")[1] : "/";
@@ -29,11 +30,18 @@ const Register = ({ history, location }) => {
   };
 
   return (
-    <section id="form">
+    <section id="form" style={{ backgroundColor: "#f4f4f4", margin: "40px 0" }}>
       <div className="container">
         <div className="row">
-          <div className="col-sm-4 col-sm-offset-1">
-            <div className="login-form">
+          <div
+            className="col-sm-6 "
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "500px",
+            }}
+          >
+            <div className="login-form" style={{ height: "50%", width: "80%" }}>
               <h2>Register new account</h2>
               {error && <Message variant="alert alert-danger">{error}</Message>}
               {loading && (
@@ -70,6 +78,18 @@ const Register = ({ history, location }) => {
                 </button>
               </form>
             </div>
+          </div>
+          <div className="col-sm-6">
+            <div
+              style={{
+                backgroundImage: `url(${image})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                width: "100%",
+                height: "500px",
+              }}
+            ></div>
           </div>
         </div>
       </div>

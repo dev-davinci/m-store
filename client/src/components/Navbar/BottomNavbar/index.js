@@ -19,7 +19,7 @@ const BottomNavbar = () => {
           <div className="col-sm-4">
             <div className="logo pull-left">
               <Link to="/">
-                <img src="images/home/logo.png" alt="" />
+                <img src="images/logo.png" alt="" />
               </Link>
             </div>
           </div>

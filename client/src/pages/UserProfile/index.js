@@ -57,7 +57,7 @@ const UserProfile = ({ history, location }) => {
   };
 
   return (
-    <section id="form">
+    <section id="form" style={{ backgroundColor: "#f4f4f4", margin: "40px 0" }}>
       <div className="container">
         <div className="row">
           {message && <Message variant="alert alert-danger">{message}</Message>}
@@ -72,101 +72,119 @@ const UserProfile = ({ history, location }) => {
           ) : error ? (
             <Message variant="alert alert-danger">{error}</Message>
           ) : (
-            <div className="col-sm-4 col-sm-offset-1">
-              <div className="login-form">
-                <h2>Update your information</h2>
-                <form onSubmit={submitHandler}>
-                  <input
-                    type="name"
-                    placeholder="Name"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
+            <>
+              <div
+                className="col-sm-6"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: "500px",
+                }}
+              >
+                <div
+                  className="login-form"
+                  style={{ height: "50%", width: "80%" }}
+                >
+                  <h2>Update your information</h2>
+                  <form onSubmit={submitHandler}>
+                    <input
+                      type="name"
+                      placeholder="Name"
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
 
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    value={confirmPassword}
-                  />
-                  <button type="submit" className="btn btn-default">
-                    Update
-                  </button>
-                </form>
+                    <input
+                      type="password"
+                      placeholder="Confirm Password"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      value={confirmPassword}
+                    />
+                    <button type="submit" className="btn btn-default">
+                      Update
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
+              <div className="col-sm-6">
+                <h2>My Orders</h2>
+                {loadingOrders ? (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={3000} //3 secs
+                  />
+                ) : errorOrders ? (
+                  <Message variant="danger">{errorOrders}</Message>
+                ) : (
+                  <Table striped bordered hover responsive className="table-sm">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>DATE</th>
+                        <th>TOTAL</th>
+                        <th>PAID</th>
+                        <th>DELIVERED</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orders.map((order) => (
+                        <tr key={order._id}>
+                          <td>{order._id}</td>
+                          <td>{order.createdAt.substring(0, 10)}</td>
+                          <td>{order.totalPrice}</td>
+                          <td>
+                            {order.isPaid ? (
+                              order.paidAt.substring(0, 10)
+                            ) : (
+                              <i
+                                className="fas fa-times"
+                                style={{ color: "red" }}
+                              ></i>
+                            )}
+                          </td>
+                          <td>
+                            {order.isDelivered ? (
+                              order.deliveredAt.substring(0, 10)
+                            ) : (
+                              <i
+                                className="fas fa-times"
+                                style={{ color: "red" }}
+                              ></i>
+                            )}
+                          </td>
+                          <td>
+                            <LinkContainer to={`/order/${order._id}`}>
+                              <Button className="btn-sm" variant="light">
+                                Details
+                              </Button>
+                            </LinkContainer>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                )}
+              </div>
+            </>
           )}{" "}
         </div>
       </div>
-      <Col md={9}>
-        <h2>My Orders</h2>
-        {loadingOrders ? (
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-          />
-        ) : errorOrders ? (
-          <Message variant="danger">{errorOrders}</Message>
-        ) : (
-          <Table striped bordered hover responsive className="table-sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order._id}>
-                  <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
-                  <td>{order.totalPrice}</td>
-                  <td>
-                    {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
-                    ) : (
-                      <i className="fas fa-times" style={{ color: "red" }}></i>
-                    )}
-                  </td>
-                  <td>
-                    {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
-                    ) : (
-                      <i className="fas fa-times" style={{ color: "red" }}></i>
-                    )}
-                  </td>
-                  <td>
-                    <LinkContainer to={`/order/${order._id}`}>
-                      <Button className="btn-sm" variant="light">
-                        Details
-                      </Button>
-                    </LinkContainer>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        )}
-      </Col>
     </section>
   );
 };

@@ -38,7 +38,7 @@ const ProductDetails = ({ match, history }) => {
           <>
             <div className="col-sm-5">
               <div className="view-product">
-                <img src="images/product-details/1.jpg" alt="" />
+                <img src={product.image} alt="" />
               </div>
             </div>
             <div className="col-sm-7">

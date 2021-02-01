@@ -68,7 +68,9 @@ const Shipping = ({ history }) => {
       */}
       <div className="container">
         <form className="form-horizontal" onSubmit={submitHandler}>
-          <p style={{ fontSize: "25px" }}> Bill To</p>
+          <h2 className="title text-center" style={{ fontSize: "30px" }}>
+            Bill to
+          </h2>
           <div className="form-group ">
             <label className="control-label col-sm-2" for="address">
               Address:

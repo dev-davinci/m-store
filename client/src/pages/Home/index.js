@@ -4,8 +4,9 @@ import Loader from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "./../../components/Message";
 import { Link } from "react-router-dom";
+import Slider from "../../components/Slider";
 
-const Home = ({ match, history, location }) => {
+const Home = () => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.listProducts);
@@ -17,8 +18,11 @@ const Home = ({ match, history, location }) => {
 
   return (
     <div className="col-sm-12 padding-right">
+      <Slider />
       <div className="features_items" style={{ paddingTop: "25px" }}>
-        <h2 className="title text-center">Features Items</h2>
+        <h2 className="title text-center" style={{ fontSize: "40px" }}>
+          Features Items
+        </h2>
         {loading ? (
           <Loader
             type="Puff"
@@ -35,8 +39,8 @@ const Home = ({ match, history, location }) => {
               <div className="product-image-wrapper">
                 <div className="single-products">
                   <div className="productinfo text-center">
-                    <img src={product.image} alt="" />
-                    <h2>{product.price}</h2>
+                    <img src={product.image} alt={product.name} />
+                    <h2>${product.price}</h2>
                     <p>{product.name}</p>
                     <a href="/" className="btn btn-default add-to-cart">
                       <i className="fa fa-shopping-cart"></i>Add to cart
@@ -44,9 +48,22 @@ const Home = ({ match, history, location }) => {
                   </div>
                   <div className="product-overlay">
                     <div className="overlay-content">
-                      <h2>{product.price}</h2>
-                      <Link to={`products/${product._id}`}>{product.name}</Link>
-                      <a href="/" className="btn btn-default add-to-cart">
+                      <h2>${product.price}</h2>
+                      <Link
+                        style={{ color: "#fff" }}
+                        to={`products/${product._id}`}
+                      >
+                        {product.name}
+                      </Link>
+                      <a
+                        href="/"
+                        className="btn btn-default add-to-cart"
+                        style={{
+                          display: "block",
+                          width: "50%",
+                          margin: "10px auto",
+                        }}
+                      >
                         <i className="fa fa-shopping-cart"></i>Add to cart
                       </a>
                     </div>

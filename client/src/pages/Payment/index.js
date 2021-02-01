@@ -52,24 +52,36 @@ const Payment = ({ history }) => {
   </div>*/}
       <div className="container">
         <form className="form-horizontal" onSubmit={submitHandler}>
-          <p style={{ fontSize: "25px" }}> Payment Method</p>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                id="paypal"
-                name="paypal"
-                value="PayPal"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                checked
-              />
-              Paypal
-            </label>
-          </div>
+          <h2 className="title text-center" style={{ fontSize: "40px" }}>
+            Payment
+          </h2>
+          <div
+            style={{
+              padding: "20px",
+              width: "40%",
+              margin: "10px auto",
+              border: "2px solid #ccc",
+            }}
+          >
+            <h3 style={{ margin: "0" }}>Choose payment method</h3>
 
-          <div className="form-group">
-            <div className="col-sm-offset-2 col-sm-10">
-              <button className="btn btn-primary">Submit</button>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  id="paypal"
+                  name="paypal"
+                  value="PayPal"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  checked
+                />
+                Paypal
+              </label>
+            </div>
+            <div className="form-group">
+              <div className="col-sm-10">
+                <button className="btn btn-primary">Submit</button>
+              </div>
             </div>
           </div>
         </form>

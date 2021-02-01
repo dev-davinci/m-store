@@ -30,10 +30,18 @@ const Cart = ({ match, history, location }) => {
   return (
     <section id="cart_items">
       <div class="container">
-        <h1>Shopping Cart</h1>
+        <h2 className="title text-center" style={{ fontSize: "40px" }}>
+          Your cart
+        </h2>
         {cartItems.length === 0 ? (
-          <Message variant="aler alert-info">
-            <h4>
+          <Message variant="aler alert-danger">
+            <h4
+              style={{
+                padding: "20px 15px",
+                borderRadius: "50px",
+                margin: "50px 0",
+              }}
+            >
               Your cart is empty. <Link to="/">Go Back?</Link>
             </h4>
           </Message>
@@ -56,7 +64,11 @@ const Cart = ({ match, history, location }) => {
                     <tr key={item.product}>
                       <td class="cart_product">
                         <a href="">
-                          <img src={item.image} alt={item.alt} />
+                          <img
+                            src={item.image}
+                            alt={item.alt}
+                            style={{ width: "50px", height: "50px" }}
+                          />
                         </a>
                       </td>
                       <td class="cart_description">
@@ -68,10 +80,11 @@ const Cart = ({ match, history, location }) => {
                         <p>Web ID: {item._id}</p>
                       </td>
                       <td class="cart_price">
-                        <p>{item.price}</p>
+                        <p>${item.price}</p>
                       </td>
                       <td class="cart_quantity">
                         <select
+                          style={{ width: "50%" }}
                           value={item.qty}
                           onChange={(e) =>
                             dispatch(
@@ -87,7 +100,7 @@ const Cart = ({ match, history, location }) => {
                         </select>
                       </td>
                       <td class="cart_total">
-                        <p class="cart_total_price">{item.price * item.qty}</p>
+                        <p class="cart_total_price">${item.price * item.qty}</p>
                       </td>
                       <td class="cart_delete">
                         <a
@@ -102,9 +115,9 @@ const Cart = ({ match, history, location }) => {
                 </tbody>
               </table>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" style={{ padding: "0" }}>
               <div class="total_area">
-                <ul>
+                <ul style={{ padding: "0" }}>
                   <li>
                     Cart Sub Total{" "}
                     <span>
@@ -117,7 +130,11 @@ const Cart = ({ match, history, location }) => {
                   </li>
                 </ul>
 
-                <a class="btn btn-default check_out" onClick={checkoutHandler}>
+                <a
+                  class="btn btn-default check_out"
+                  style={{ margin: "20px 0" }}
+                  onClick={checkoutHandler}
+                >
                   Check Out
                 </a>
               </div>

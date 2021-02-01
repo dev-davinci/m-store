@@ -15,8 +15,7 @@ connectDB();
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
-app.use(bodyParser.json()); // Send JSON responses
+app.use(express.static("public/images/"));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

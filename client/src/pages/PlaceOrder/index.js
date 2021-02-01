@@ -14,7 +14,6 @@ import {
   Image,
   Card,
 } from "react-bootstrap";
-import CheckoutSteps from "../../components/CheckoutSteps";
 
 const PlaceOrder = ({ history }) => {
   const dispatch = useDispatch();
@@ -69,7 +68,6 @@ const PlaceOrder = ({ history }) => {
   };
   return (
     <Container>
-      <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -128,31 +126,31 @@ const PlaceOrder = ({ history }) => {
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item style={{ paddingLeft: "40px" }}>
                 <Row>
                   <Col>Items</Col>
                   <Col>${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item style={{ paddingLeft: "40px" }}>
                 <Row>
                   <Col>Shipping</Col>
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item style={{ paddingLeft: "40px" }}>
                 <Row>
                   <Col>Tax</Col>
                   <Col>${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item style={{ paddingLeft: "40px" }}>
                 <Row>
                   <Col>Total</Col>
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item style={{ paddingLeft: "40px" }}>
                 {error && <Message variant="danger">{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
