@@ -92,6 +92,18 @@ const BottomNavbar = () => {
                       </Link>
                     </li>
                   </>
+                )}{" "}
+                {userInfo && userInfo.isAdmin && (
+                  <li className="dropdown">
+                    <a href="#">
+                      Dashboard<i className="fa fa-angle-down"></i>
+                    </a>
+                    <ul role="menu" className="sub-menu">
+                      <li>
+                        <Link to="/admin/userlist">Users</Link>
+                      </li>
+                    </ul>
+                  </li>
                 )}
               </ul>
             </div>

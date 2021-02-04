@@ -11,6 +11,8 @@ import Shipping from "./pages/Shipping";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import Order from "./pages/Order";
+import UserList from "./pages/UserList";
+import UserEdit from "./pages/UserEdit";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
       <Route path="/payment" component={Payment} />
       <Route path="/placeorder" component={PlaceOrder} />
       <Route path="/order/:id" component={Order} />
+      <Route path="/admin/userlist" component={UserList} />
+      <Route path="/admin/user/:id/edit" component={UserEdit} />
       <Route path="/" exact component={Home} />
       <Footer />
     </Router>
