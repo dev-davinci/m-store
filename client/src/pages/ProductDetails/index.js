@@ -12,7 +12,6 @@ const ProductDetails = ({ match, history }) => {
 
   const { product, error, loading } = productDetails;
 
-  console.log(product);
   useEffect(() => {
     if (!product._id || product._id !== match.params.id) {
       dispatch(getProductDetails(match.params.id));
