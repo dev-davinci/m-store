@@ -5,19 +5,26 @@ import { useSelector, useDispatch } from "react-redux";
 import Message from "./../../components/Message";
 import { Link } from "react-router-dom";
 import Slider from "../../components/Slider";
+import Paginate from "../../components/Paginate";
+import Meta from "../../components/Meta";
 
-const Home = () => {
+const Home = ({ match }) => {
+  const keyword = match.params.keyword;
+
+  const pageNumber = match.params.pageNumber || 1;
+
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.listProducts);
-  const { products, loading, error } = productList;
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products, page, pages } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <div className="col-sm-12 padding-right">
+      <Meta />
       <Slider />
       <div className="features_items" style={{ paddingTop: "25px" }}>
         <h2 className="title text-center" style={{ fontSize: "40px" }}>
@@ -82,6 +89,7 @@ const Home = () => {
             </div>
           ))
         )}
+        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""} />
       </div>
     </div>
   );

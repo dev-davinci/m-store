@@ -105,6 +105,9 @@ const BottomNavbar = () => {
                       <li>
                         <Link to="/admin/productlist">Products</Link>
                       </li>
+                      <li>
+                        <Link to="/admin/orderlist">Orders</Link>
+                      </li>
                     </ul>
                   </li>
                 )}

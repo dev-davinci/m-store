@@ -14,22 +14,20 @@ import {
 
 const ProductEdit = ({ match, history }) => {
   const productId = match.params.id;
-  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [brand, setBrand] = useState("");
   const [image, setImage] = useState("");
+  const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
 
+  const dispatch = useDispatch();
+
   const productDetails = useSelector((state) => state.productDetails);
-
-  const { product, error, loading } = productDetails;
-
-  console.log(product);
+  const { loading, error, product } = productDetails;
 
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
@@ -101,26 +99,12 @@ const ProductEdit = ({ match, history }) => {
       <Link to="/admin/productlist" className="btn btn-light my-3">
         Go Back
       </Link>
-      <div className="container">
+      <div class="container">
         <h1>Edit Product</h1>
-        {loadingUpdate && (
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-          />
-        )}
+        {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-          />
+          <Loader />
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
@@ -143,6 +127,23 @@ const ProductEdit = ({ match, history }) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="image">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter image url"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></Form.Control>
+              <Form.File
+                id="image-file"
+                label="Choose File"
+                custom
+                onChange={uploadFileHandler}
+              ></Form.File>
+              {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId="brand">

@@ -15,6 +15,7 @@ import UserList from "./pages/UserList";
 import UserEdit from "./pages/UserEdit";
 import ProductList from "./pages/ProductList";
 import ProductEdit from "./pages/ProductEdit";
+import OrderList from "./pages/OrderList";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -34,6 +35,10 @@ const App = () => {
       <Route path="/admin/user/:id/edit" component={UserEdit} />
       <Route path="/admin/productlist" component={ProductList} />
       <Route path="/admin/product/:id/edit" component={ProductEdit} />
+      <Route path="/admin/orderlist" component={OrderList} />
+      <Route path="/search/:keyword" component={Home} exact />
+      <Route path="/page/:pageNumber" component={Home} exact />
+      <Route path="/search/:keyword/page/:pageNumber" component={Home} exact />
       <Route path="/" exact component={Home} />
       <Footer />
     </Router>
